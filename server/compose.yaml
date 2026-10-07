@@ -1,0 +1,22 @@
+services:
+  wan-ip-monitor:
+    image: python:3.12-alpine
+    restart: unless-stopped
+    command: [python, -u, /app/web.py]
+    environment:
+      WEB_PASSWORD: ${WEB_PASSWORD:?Set WEB_PASSWORD in .env}
+      DISPLAY_TOKEN: ${DISPLAY_TOKEN:?Set DISPLAY_TOKEN in .env}
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./:/app:ro
+      - ./data:/data
+    read_only: true
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    logging:
+      driver: json-file
+      options:
+        max-size: "5m"
+        max-file: "2"

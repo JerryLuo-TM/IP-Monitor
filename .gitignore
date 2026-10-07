@@ -1,0 +1,11 @@
+# Never commit real credentials, device configuration, runtime state, or builds.
+**/.env
+**/wan_config.h
+**/ota_config.ini
+**/config.json
+**/data/
+**/.pio/
+**/__pycache__/
+**/.pytest_cache/
+*.bin
+*.zip
